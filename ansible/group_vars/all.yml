@@ -1,0 +1,2 @@
+kubeconfig: "/home/vrajnandak/.kube/config"
+name_prefix: "cinesense"

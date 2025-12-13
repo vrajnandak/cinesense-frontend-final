@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ networkpolicy_name }}
+  namespace: {{ namespace_name }}
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ labels.app }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: {{ namespace_name }}
+        - podSelector:
+            matchLabels:
+              app: "{{ name_prefix }}-ingress-allow"   # ingress service (label below) allowed
+      ports:
+        - protocol: TCP
+          port: 80

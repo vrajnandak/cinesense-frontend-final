@@ -1,0 +1,42 @@
+---
+- name: Ensure frontend namespace exists
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/namespace.yml.j2') }}"
+
+- name: Ensure frontend ResourceQuota exists
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/resourcequota.yml.j2') }}"
+
+- name: Apply frontend Deployment
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/deployment.yml.j2') }}"
+
+- name: Apply frontend service
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/service.yml.j2') }}"
+
+- name: Apply frontend Ingress 
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/ingress.yml.j2') }}"
+
+- name: Apply frontend HPA
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/hpa.yml.j2') }}"
+
+- name: Apply frontend NetworkPolicy 
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'roles/frontend/templates/networkpolicy.yml.j2') }}"

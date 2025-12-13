@@ -1,0 +1,12 @@
+- name: Deploy Cinesense frontend to minikube
+  hosts: local
+  gather_facts: false
+  connection: local
+  collections:
+    - community.kubernetes
+
+  vars_files:
+    - group_vars/frontend/secrets.yml
+
+  roles:
+    - role: frontend

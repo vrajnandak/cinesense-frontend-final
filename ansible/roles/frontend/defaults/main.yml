@@ -1,0 +1,31 @@
+namespace_name: "{{ name_prefix }}-frontend"
+app_name: "{{ name_prefix }}-frontend"
+deployment_name: "{{ app_name }}-deploy"
+service_name: "{{ app_name }}-svc"
+ingress_name: "{{ app_name }}-ingress"
+hpa_name: "{{ app_name }}-hpa"
+networkpolicy_name: "{{ app_name }}-netpol"
+resourcequota_name: "{{ app_name }}-quota"
+
+image: "vrajnandak/cinesense-frontend-image:midpoint"
+replicas: 2
+container_port: 80
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+hpa_min_replicas: 2
+hpa_max_replicas: 5
+hpa_target_cpu_utilization_percentage: 60
+
+ingress_host: "cinesense.local"
+ingress_path: "/"
+
+labels:
+  app: "{{ app_name }}"
+  tier: frontend
