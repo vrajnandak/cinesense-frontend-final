@@ -55,17 +55,5 @@
     state: present
     definition: "{{ lookup('template', 'roles/frontend/templates/networkpolicy.yml.j2') }}"
 
-- name: Force rollout of frontend deployment
-  kubernetes.core.k8s:
-    kubeconfig: "{{ kubeconfig }}"
-    validate_certs: false
-    state: present
-    kind: Deployment
-    namespace: "{{ namespace_name }}"
-    name: "{{ deployment_name }}"
-    definition: {}
-  register: frontend_deploy
-
-- name: Restart frontend pods if updated
+- name: Restart frontend deployment
   command: kubectl rollout restart deployment "{{ deployment_name }}" -n "{{ namespace_name }}"
-  when: frontend_deploy.changed
