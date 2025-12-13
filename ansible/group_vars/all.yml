@@ -1,2 +1,2 @@
-kubeconfig: "/home/vrajnandak/.kube/config"
+kubeconfig: "/var/lib/jenkins/.kube/config"
 name_prefix: "cinesense"
