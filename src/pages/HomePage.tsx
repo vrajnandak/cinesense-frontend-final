@@ -103,7 +103,7 @@ export default function HomePage() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1 style={{ textAlign: "center" }}>Fixed Movie List</h1>
+      <h1 style={{ textAlign: "center" }}>Current Movie List</h1>
 
       <div
         style={{
