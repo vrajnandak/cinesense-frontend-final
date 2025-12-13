@@ -3,7 +3,8 @@
   gather_facts: false
   connection: local
   collections:
-    - community.kubernetes
+    - kubernetes.core
+    #    - community.kubernetes
 
   vars_files:
     - group_vars/frontend/secrets.yml

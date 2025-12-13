@@ -7,7 +7,7 @@ hpa_name: "{{ app_name }}-hpa"
 networkpolicy_name: "{{ app_name }}-netpol"
 resourcequota_name: "{{ app_name }}-quota"
 
-image: "vrajnandak/cinesense-frontend-image:midpoint"
+image: "vrajnandak/cinesense-frontend-image:latest"
 replicas: 2
 container_port: 80
 

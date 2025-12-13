@@ -4,7 +4,7 @@ pipeline {
     environment {
         REGISTRY = "vrajnandak"
         IMAGE_NAME = "vrajnandak/cinesense-frontend-image"
-        TAG = "midpoint"
+        TAG = "latest"
 	DOCKERHUB_CREDENTIALS = "dockerhub-cinesense"
 	ANSIBLE_VENV="/var/lib/jenkins/.ansible-venv"
 	KUBECONFIG_PATH="/var/lib/jenkins/.kube/config"

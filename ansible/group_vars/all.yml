@@ -1,2 +1,3 @@
 kubeconfig: "/var/lib/jenkins/.kube/config"
+k8s_validate_certs: false
 name_prefix: "cinesense"
