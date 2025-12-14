@@ -8,6 +8,11 @@
     kubeconfig: "{{ kubeconfig }}"
     definition: "{{ lookup('template', 'elasticsearch.yml.j2') }}"
 
+- name: Deploy Elasticsearch Service
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'elasticsearch-service.yml.j2') }}"
+
 - name: Deploy Kibana
   community.kubernetes.k8s:
     kubeconfig: "{{ kubeconfig }}"
@@ -17,6 +22,21 @@
   community.kubernetes.k8s:
     kubeconfig: "{{ kubeconfig }}"
     definition: "{{ lookup('template', 'kibana_service.yml.j2') }}"
+
+- name: Create Filebeat ServiceAccount
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'filebeat-serviceaccount.yml.j2') }}"
+
+- name: Create Filebeat ClusterRole
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'filebeat-clusterrole.yml.j2') }}"
+
+- name: Create Filebeat ClusterRoleBinding
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'filebeat-clusterrolebinding.yml.j2') }}"
 
 - name: Deploy Filebeat
   community.kubernetes.k8s:
