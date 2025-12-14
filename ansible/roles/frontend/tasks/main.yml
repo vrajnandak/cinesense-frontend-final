@@ -56,4 +56,5 @@
     definition: "{{ lookup('template', 'roles/frontend/templates/networkpolicy.yml.j2') }}"
 
 - name: Restart frontend deployment
+  validate_certs: false
   command: kubectl rollout restart deployment "{{ deployment_name }}" -n "{{ namespace_name }}"
