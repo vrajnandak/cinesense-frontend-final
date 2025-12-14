@@ -1,0 +1,30 @@
+- name: Create logging namespace
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'namespace.yml.j2') }}"
+
+- name: Deploy Elasticsearch
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'elasticsearch.yml.j2') }}"
+
+- name: Deploy Kibana
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'kibana.yml.j2') }}"
+
+- name: NodePort Service for Kibana
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'kibana_service.yml.j2') }}"
+
+- name: Deploy Filebeat
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'filebeat-config.yml.j2') }}"
+
+- name: Deploy Filebeat DaemonSet
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    definition: "{{ lookup('template', 'filebeat-daemonset.yml.j2') }}"
+
